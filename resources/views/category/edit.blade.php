@@ -1,5 +1,5 @@
 @extends('layouts.layout1')
-@section('title', 'Show Categories')
+@section('title', 'Edit Category')
 {{-- @section('header')
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -28,42 +28,42 @@
 @section('content')
     <div class="row">
         <div class="col-md-9">
-            <h2>All Categories</h2>
+            <h2>Update Category</h2>
         </div>
         <div class="col-md-3">
             <a href="{{ url('/admin/categories') }}" class="btn btn-primary">Back to all categories</a>
         </div>
     </div>
     <div class="row">
-        <table class="table">
-            <tr>
-                <td style="background-color: #f3f3f3">ID</td>
-                <td>{{ $category->id }}</td>
-            </tr>
-            <tr>
-                <td style="background-color: #f3f3f3">Name</td>
-                <td>{{ $category->name }}</td>
-            </tr>
-            <tr>
-                <td style="background-color: #f3f3f3">Detail</td>
-                <td>{{ $category->detail }}</td>
-            </tr>
-            <tr>
-                <td style="background-color: #f3f3f3">Status</td>
-                <td>{{ $category->status === 1 ? "Active" : "Not Active" }}</td>
-            </tr>
-            <tr>
-                <td style="background-color: #f3f3f3">Created At</td>
-                <td>{{ $category->created_at }}</td>
-            </tr>
-            <tr>
-                <td style="background-color: #f3f3f3">Actions</td>
-                <td>
-                    <a href="{{ url('admin/categories/edit/' . $category->id) }}" class="btn btn-success">Edit</a>
-                    <a href="{{ url('admin/categories/delete/' . $category->id) }}" class="btn btn-danger" onclick="return confirm('Confirm your action?')">Delete</a>
-                </td>
-            </tr>
-        </table>
+        <form action="{{ url('admin/categories/update/' . $category->id) }}" method="post">
+            {{ csrf_field() }}
+            <table class="table">
+                <tr>
+                    <td style="backgroud-color: #f3f3f3">Name</td>
+                    <td><input type="text" name="name" id="cat_name" class="form-control" value="{{ $category->name }}"></td>
+                </tr>
+                <tr>
+                    <td style="backgroud-color: #f3f3f3">Detail</td>
+                    <td><textarea name="detail" id="cat_detail" cols="30" rows="10" class="form-control">{{ $category->detail }}</textarea></td>
+                </tr>
+                <tr>
+                    <td style="backgroud-color: #f3f3f3">Status</td>
+                    <td>
+                        <select name="status" id="cat_status" class="form-control">
+                            <option value="0" {{ $category->status === 0 ? "selected" : "" }}>Not Active</option>
+                            <option value="1" {{ $category->status === 1 ? "selected" : "" }}>Active</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="backgroud-color: #f3f3f3"></td>
+                    <td>
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a href="{{ url('admin/categories') }}" class="btn btn-danger">Cancel</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 @endsection
 
