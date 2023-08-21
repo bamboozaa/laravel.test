@@ -27,3 +27,8 @@ Route::get('home', function () {
 
 Route::get('admin/categories', 'App\Http\Controllers\CategoriesController@home');
 Route::get('admin/categories/show/{id}', 'App\Http\Controllers\CategoriesController@show');
+Route::get('admin/categories/new', 'App\Http\Controllers\CategoriesController@new');
+Route::post('admin/categories/store', 'App\Http\Controllers\CategoriesController@store');
+Route::get('admin/categories/edit/{id}', 'App\Http\Controllers\CategoriesController@edit');
+Route::post('admin/categories/update/{id}', 'App\Http\Controllers\CategoriesController@update');
+Route::get('admin/categories/delete/{id}', 'App\Http\Controllers\CategoriesController@delete');
