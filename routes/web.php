@@ -26,3 +26,4 @@ Route::get('home', function () {
 });
 
 Route::get('admin/categories', 'App\Http\Controllers\CategoriesController@home');
+Route::get('admin/categories/show/{id}', 'App\Http\Controllers\CategoriesController@show');

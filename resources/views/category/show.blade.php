@@ -1,5 +1,5 @@
 @extends('layouts.layout1')
-@section('title', 'Home Categories')
+@section('title', 'Show Categories')
 @section('header')
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -31,30 +31,38 @@
             <h2>All Categories</h2>
         </div>
         <div class="col-md-3">
-            <a href="{{ url('/admin/categories/new') }}" class="btn btn-primary">New Category</a>
+            <a href="{{ url('/admin/categories') }}" class="btn btn-primary">Back to all categories</a>
         </div>
     </div>
     <div class="row">
         <table class="table">
-            <tr style="background-color: #f3f3f3">
-                <td>ID</td>
-                <td>Name</td>
-                <td>Detail</td>
-            </tr>
-            @if (count($categories) > 0)
-            @foreach ($categories as $key => $category)
             <tr>
-                <td>{{ $key+1 }}</td>
-                <td><a href="{{ url('admin/categories/show/' . $category->id) }}">{{ $category->name }}</a></td>
+                <td style="background-color: #f3f3f3">ID</td>
+                <td>{{ $category->id }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: #f3f3f3">Name</td>
+                <td>{{ $category->name }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: #f3f3f3">Detail</td>
                 <td>{{ $category->detail }}</td>
             </tr>
-            @endforeach
-            @else
             <tr>
-                <td colspan="3"></td>
+                <td style="background-color: #f3f3f3">Status</td>
+                <td>{{ $category->status === 1 ? "Active" : "Not Active" }}</td>
             </tr>
-            @endif
-
+            <tr>
+                <td style="background-color: #f3f3f3">Created At</td>
+                <td>{{ $category->created_at }}</td>
+            </tr>
+            <tr>
+                <td style="background-color: #f3f3f3">Actions</td>
+                <td>
+                    <a href="{{ url('admin/categories/edit/' . $category->id) }}" class="btn btn-success">Edit</a>
+                    <a href="{{ url('admin/categories/delete/' . $category->id) }}" class="btn btn-danger" onclick="return confirm('Confirm your action?')">Delete</a>
+                </td>
+            </tr>
         </table>
     </div>
 @endsection
