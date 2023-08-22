@@ -38,6 +38,7 @@
         <table class="table">
             <tr style="background-color: #f3f3f3">
                 <td>ID</td>
+                <td>ICON</td>
                 <td>Name</td>
                 <td>Detail</td>
             </tr>
@@ -45,6 +46,7 @@
             @foreach ($categories as $key => $category)
             <tr>
                 <td>{{ $key+1 }}</td>
+                <td><img src="{{ url(isset($category->caticon['icon']) ? "uploads/images/" . $category->caticon['icon'] : "images/nophoto.jpg") }}" width="100" height="100" alt=""></td>
                 <td><a href="{{ url('admin/categories/show/' . $category->id) }}">{{ $category->name }}</a></td>
                 <td>{{ $category->detail }}</td>
             </tr>

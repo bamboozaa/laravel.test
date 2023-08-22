@@ -9,5 +9,9 @@ class Category extends Model
 {
     use HasFactory;
     protected $table = 'categories';
-    protected $fillable = ['name', 'detail', 'status'];
+    protected $fillable = ['name', 'detail', 'status', 'icon_id'];
+
+    public function caticon() {
+        return $this->hasOne(Caticon::class, 'id', 'icon_id');
+    }
 }
