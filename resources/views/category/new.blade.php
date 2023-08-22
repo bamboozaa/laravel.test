@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="row">
-        <form action="{{ url('admin/categories/store') }}" method="post">
+        <form action="{{ url('admin/categories/store') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <table class="table">
                 <tr>
@@ -45,6 +45,10 @@
                 <tr>
                     <td style="backgroud-color: #f3f3f3">Detail</td>
                     <td><textarea name="detail" id="cat_detail" cols="30" rows="10" class="form-control"></textarea></td>
+                </tr>
+                <tr>
+                    <td style="backgroud-color: #f3f3f3">Category Icon</td>
+                    <td><input type="file" name="photo_id" id="" class="form-control"></td>
                 </tr>
                 <tr>
                     <td style="backgroud-color: #f3f3f3">Status</td>

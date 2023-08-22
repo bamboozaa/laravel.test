@@ -46,7 +46,7 @@
             @foreach ($categories as $key => $category)
             <tr>
                 <td>{{ $key+1 }}</td>
-                <td><img src="{{ url(isset($category->caticon['icon']) ? "uploads/images/" . $category->caticon['icon'] : "images/nophoto.jpg") }}" width="100" height="100" alt=""></td>
+                <td><img src="{{ url(isset($category->caticon['icon']) ? "uploads/images/" . $category->caticon['icon'] : "images/nophoto.jpg") }}" height="100" alt=""></td>
                 <td><a href="{{ url('admin/categories/show/' . $category->id) }}">{{ $category->name }}</a></td>
                 <td>{{ $category->detail }}</td>
             </tr>
@@ -59,10 +59,13 @@
 
         </table>
     </div>
+
 @endsection
 
 @section('footer')
     <footer class="footer">
         <p>&copy; Book Store 2023</p>
     </footer>
+
+
 @endsection

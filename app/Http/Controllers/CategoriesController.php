@@ -24,7 +24,18 @@ class CategoriesController extends Controller
 
     public function store(Request $request) {
         // หากต้องการแทนที่ค่าใหม่ด้วยค่าคงที่สามารถกำหนดค่าก่อนบันทึก ดังนี้ $input['name'] = $request->name;
-        Category::create($request->all());
+        $input['icon_id'] = 0;
+        if ($file = $request->file('photo_id')) {
+            $name = time().$file->getClientOriginalName();
+            $file->move('uploads/images', $name);
+            $icon = Caticon::create(['icon' => $name]);
+            $input['icon_id'] = $icon->id;
+        }
+        $input['name'] = $request->name;
+        $input['detail'] = $request->detail;
+        $input['status'] = $request->status;
+        Category::create($input);
+        // Category::create($request->all());
         return redirect('admin/categories');
     }
 
